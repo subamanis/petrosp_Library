@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="petrosp_Library_12:jar">
+    <output-path>$PROJECT_DIR$/out/jdk12/artifacts/petrosp_Library_jar</output-path>
+    <root id="archive" name="petrosp_Library_12.jar">
+      <element id="module-output" name="petrosp_Library" />
+    </root>
+  </artifact>
+</component>
