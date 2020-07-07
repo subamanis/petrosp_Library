@@ -157,7 +157,15 @@ class PDataTest
     @Test
     void toMap()
     {
-        class Her
+        class All
+        {
+            public String getSmth()
+            {
+                return "ee";
+            }
+        }
+
+        class Her extends All
         {
             String s1, s2;
 
@@ -174,8 +182,16 @@ class PDataTest
         list.add(new Her("32","dd"));
         list.add(new Her("33","dd1"));
         list.add(new Her("34","dd2"));
+        Set<Her> set = new HashSet<>(list);
 
         Map<String, Her> map = PData.toHashMap(Her::getS1, list);
+        assertEquals("32", map.get("32").getS1());
+
+        map = PData.toHashMap(Her::getS1, set);
+        assertEquals(list.size(), map.size());
+
+        map = PData.toHashMap(Her::getSmth, set);
+        assertEquals(1, map.size());
     }
 
     @Test
