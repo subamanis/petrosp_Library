@@ -1,6 +1,7 @@
 package com.petrosp.assist.util;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -385,7 +386,7 @@ public final class PData
      * @return The value of the map that corresponds to the given index. (keep in mind that normal HashMaps are unordered)
      * @throws IllegalArgumentException if the provided index is out of the bounds of the map.
      */
-    public static <K,V> V getMapValueFromIndex(int index, Map<K, V> map) throws IllegalArgumentException
+    public static <K,V> V getMapValueFromIndex(final int index, final Map<K, V> map) throws IllegalArgumentException
     {
         if(index < map.size()){
             int counter = 0;
@@ -397,6 +398,32 @@ public final class PData
         }
 
         throw new IllegalArgumentException("Provided index is out of bounds");
+    }
+
+    /**
+     * Create a HashMap from a given collection of Objects, that has the objects as value and a specified way to calculate
+     * the key for each object by passing a method reference or a lambda. Note that the order of items is not guaranteed
+     * to be preserved in the HashMap.
+     * @param keyFunc Method reference or lambda used to calculate the key.
+     */
+    public static <K,V,C extends Collection<V>> HashMap<K,V> toHashMap(final Function<V, K> keyFunc, final C col)
+    {
+        HashMap<K,V> map = new HashMap<>();
+        col.forEach(v -> map.put(keyFunc.apply(v), v));
+        return map;
+    }
+
+    /**
+     * Create a LinkedHashMap from a given collection of Objects, that has the objects as value and a specified way to calculate
+     * the key for each object by passing a method reference or a lambda. The order of the items is guaranteed to be
+     * preserved.
+     * @param keyFunc Method reference or lambda used to calculate the key.
+     */
+    public static <K,V,C extends Collection<V>> LinkedHashMap<K,V> toLinkedHashMap(final Function<V, K> keyFunc, final C col)
+    {
+        LinkedHashMap<K,V> map = new LinkedHashMap<>();
+        col.forEach(v -> map.put(keyFunc.apply(v), v));
+        return map;
     }
 
 

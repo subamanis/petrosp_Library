@@ -155,6 +155,30 @@ class PDataTest
     }
 
     @Test
+    void toMap()
+    {
+        class Her
+        {
+            String s1, s2;
+
+            public Her(String s1, String s2)
+            {
+                this.s1 = s1;
+                this.s2 = s2;
+            }
+
+            public String getS1() { return s1; }
+        }
+
+        List<Her> list = new ArrayList<>();
+        list.add(new Her("32","dd"));
+        list.add(new Her("33","dd1"));
+        list.add(new Her("34","dd2"));
+
+        Map<String, Her> map = PData.toHashMap(Her::getS1, list);
+    }
+
+    @Test
     void deepCopy2DOf()
     {
         Double[][] ia = {{2d,1d},{4d,3d}};
