@@ -2,10 +2,7 @@ package com.petrosp.assist.util;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -137,6 +134,24 @@ class PDataTest
         List<String> sli = Arrays.asList("str1", "str2", "emptyOne");
         assertEquals(22, PData.join(sli, " , ").length());
         assertEquals(17, PData.join(sli, " , ", 2).length());
+    }
+
+    @Test
+    void getFromMapByIndex()
+    {
+        Map<Integer, Integer> doubleNumbers = new LinkedHashMap<>();
+        doubleNumbers.put(1,2);
+        doubleNumbers.put(2,4);
+        doubleNumbers.put(3,6);
+        doubleNumbers.put(4,8);
+
+        assertEquals(2, PData.getMapKeyFromIndex(1, doubleNumbers));
+        assertEquals(4, PData.getMapKeyFromIndex(3, doubleNumbers));
+
+        assertEquals(4, PData.getMapValueFromIndex(1, doubleNumbers));
+        assertEquals(8, PData.getMapValueFromIndex(3, doubleNumbers));
+        assertThrows(IllegalArgumentException.class, () -> PData.getMapKeyFromIndex(-1, doubleNumbers));
+        assertThrows(IllegalArgumentException.class, () -> PData.getMapKeyFromIndex(doubleNumbers.size(), doubleNumbers));
     }
 
     @Test

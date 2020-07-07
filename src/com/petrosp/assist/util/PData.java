@@ -363,6 +363,41 @@ public final class PData
                 .collect(Collectors.joining(separator));
     }
 
+    /**
+     * @return The key of the map that corresponds to the given index. (keep in mind that normal HashMaps are unordered)
+     * @throws IllegalArgumentException if the provided index is out of the bounds of the map.
+     */
+    public static <K,V> K getMapKeyFromIndex(final int index, final Map<K, V> map) throws IllegalArgumentException
+    {
+        if(index < map.size()){
+            int counter = 0;
+            for (Map.Entry<K, V> entry : map.entrySet()) {
+                if(counter++ == index){
+                    return entry.getKey();
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("Provided index is out of bounds");
+    }
+
+    /**
+     * @return The value of the map that corresponds to the given index. (keep in mind that normal HashMaps are unordered)
+     * @throws IllegalArgumentException if the provided index is out of the bounds of the map.
+     */
+    public static <K,V> V getMapValueFromIndex(int index, Map<K, V> map) throws IllegalArgumentException
+    {
+        if(index < map.size()){
+            int counter = 0;
+            for (Map.Entry<K, V> entry : map.entrySet()) {
+                if(counter++ == index){
+                    return entry.getValue();
+                }
+            }
+        }
+
+        throw new IllegalArgumentException("Provided index is out of bounds");
+    }
 
 
 
