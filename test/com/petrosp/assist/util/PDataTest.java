@@ -192,6 +192,9 @@ class PDataTest
 
         map = PData.toHashMap(Her::getSmth, set);
         assertEquals(1, map.size());
+
+        map = PData.toHashMap(Object::toString, new ArrayList<>());
+        assertEquals(0, map.size());
     }
 
     @Test
