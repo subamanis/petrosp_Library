@@ -1,4 +1,4 @@
-package com.petrosp.assist.threaded.scheduler;
+package com.petrosp.threaded.scheduler;
 
 import java.util.Optional;
 import java.util.concurrent.*;
@@ -112,9 +112,10 @@ public final class PFixedTaskScheduler
 
 
     /**
-     * @return true if the method <code>interrputNow()</code> hasn't been called.
+     * @return true if the method <code>interruptNow()</code> hasn't been called.
      */
-    public boolean isInterrupted() {
+    public boolean isInterrupted()
+    {
         if (!repeatingTaskOpt.isPresent() && !oneTimeTaskOpt.isPresent()){
             return false;
         }

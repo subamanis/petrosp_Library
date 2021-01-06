@@ -1,4 +1,4 @@
-package com.petrosp.assist.util;
+package com.petrosp.util;
 
 import java.util.Objects;
 import java.util.function.Function;

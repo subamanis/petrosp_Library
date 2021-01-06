@@ -1,4 +1,4 @@
-package com.petrosp.assist.util;
+package com.petrosp.util;
 
 import org.junit.jupiter.api.Test;
 

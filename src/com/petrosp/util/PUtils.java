@@ -1,6 +1,6 @@
-package com.petrosp.assist.util;
+package com.petrosp.util;
 
-import java.io.*;
+import java.io.Console;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.DatagramSocket;
@@ -9,7 +9,8 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * Helper class with various static useful functions for input, number formatting, binary data size transformations,

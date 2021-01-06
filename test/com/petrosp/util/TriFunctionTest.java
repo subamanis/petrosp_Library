@@ -1,10 +1,10 @@
-package com.petrosp.assist.util;
+package com.petrosp.util;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TriFunctionTest
 {

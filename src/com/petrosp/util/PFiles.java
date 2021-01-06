@@ -1,4 +1,4 @@
-package com.petrosp.assist.util;
+package com.petrosp.util;
 
 import java.io.*;
 import java.nio.file.Files;

@@ -1,4 +1,4 @@
-package com.petrosp.assist.threaded.scheduler;
+package com.petrosp.threaded.scheduler;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.petrosp.assist.threaded.scheduler;
+package com.petrosp.threaded.scheduler;
 
 public interface PCallable
 {
