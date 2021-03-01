@@ -16,6 +16,8 @@ class PUtilsTest
 
         assertEquals(0.245212d, PUtils.toFixed(0.2452125245,6, false));
         assertEquals(0.245213d, PUtils.toFixed(0.2452125245,6, true));
+
+        assertEquals(10.02, PUtils.toFixed(10.02,4, false));
     }
 
     @Test
@@ -42,5 +44,33 @@ class PUtilsTest
         String hash = PUtils.MD5Hash(tobeHashed);
 
         assertEquals("AA7C9C12FC740955EF4DFAD670250FF4", hash.toUpperCase());
+    }
+
+    @Test
+    void TimeUnitConversions()
+    {
+        assertEquals(0.15, PTimeUnit.Milliseconds.convert(150, PTimeUnit.Seconds));
+        assertEquals(0.15, PTimeUnit.Milliseconds.convert(0.15, PTimeUnit.Milliseconds));
+        assertEquals(150000000, PTimeUnit.Seconds.convert(0.15, PTimeUnit.Nanoseconds));
+        assertEquals(0d, PTimeUnit.Seconds.convert(0d, PTimeUnit.Nanoseconds));
+        assertEquals(0, (int) PTimeUnit.Nanoseconds.convert(1, PTimeUnit.Seconds));
+    }
+
+    @Test
+    void Clamp()
+    {
+        assertEquals(0, PUtils.clamp(-1,0,100));
+        assertEquals(10, PUtils.clamp(10,0,100));
+        assertEquals(100, PUtils.clamp(110,0,100));
+        assertEquals(0, PUtils.clamp(0,0,0));
+
+        assertEquals(10.02, PUtils.clamp(10.019,10.02,11));
+        assertEquals(0, PUtils.clamp(0,-0.001,0.003));
+        assertEquals(-3, PUtils.clamp(-3,-3.09,0));
+    }
+
+    double ee()
+    {
+        return  3d;
     }
 }

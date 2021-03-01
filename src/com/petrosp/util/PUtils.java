@@ -42,14 +42,64 @@ public final class PUtils
         }else{
             String strNum = String.valueOf(value);
             int dotPos = strNum.indexOf(".");
-            return Double.parseDouble(strNum.substring(0, dotPos + decimals + 1));
+            return Double.parseDouble(strNum.substring(0, Math.min(dotPos + decimals + 1, strNum.length())));
         }
+    }
+
+
+    /**
+     * Returns
+     * @param value Provided number
+     * @param lowerBound Lowest value to be compared
+     * @param upperBound Highest value to be compared
+     * @return the value if it is between the provided bounds, otherwise, the closest bound.
+     */
+    public static int clamp(final int value, final int lowerBound, final int upperBound)
+    {
+        return Math.max(lowerBound, Math.min(value, upperBound));
+    }
+
+    /**
+     * Returns
+     * @param value Provided number
+     * @param lowerBound Lowest value to be compared
+     * @param upperBound Highest value to be compared
+     * @return the value if it is between the provided bounds, otherwise, the closest bound.
+     */
+    public static long clamp(final long value, final long lowerBound, final long upperBound)
+    {
+        return Math.max(lowerBound, Math.min(value, upperBound));
+    }
+
+    /**
+     * Returns
+     * @param value Provided number
+     * @param lowerBound Lowest value to be compared
+     * @param upperBound Highest value to be compared
+     * @return the value if it is between the provided bounds, otherwise, the closest bound.
+     */
+    public static float clamp(final float value, final float lowerBound, final float upperBound)
+    {
+        return Math.max(lowerBound, Math.min(value, upperBound));
+    }
+
+    /**
+     * Returns
+     * @param value Provided number
+     * @param lowerBound Lowest value to be compared
+     * @param upperBound Highest value to be compared
+     * @return the value if it is between the provided bounds, otherwise, the closest bound.
+     */
+    public static double clamp(double value, final double lowerBound, final double upperBound)
+    {
+        return Math.max(lowerBound, Math.min(value, upperBound));
     }
 
 
 
 
-    //____________________________________________ BINARY TRANSFORMATIONS ______________________________________________
+
+    //__________________________________________ BINARY TRANSFORMATIONS ________________________________________________
 
     public static double bytesToKBs(final long bytes) { return (double)bytes / BYTES_OF_KB; }
 
@@ -181,8 +231,8 @@ public final class PUtils
      * @param escape Value that if it is given, the function returns.
      * @return -1 if the @param escape is encountered, or the int input from the user otherwise.
      */
-    public static int getIntInputWithBoundExcludingCharacter(final String promptMessage, final int lowerBound,
-                                                             final int upperBound, final int escape)
+    public static int getIntInputWithBoundWithEscapeCharacter(final String promptMessage, final int lowerBound,
+                                                              final int upperBound, final int escape)
     {
         Scanner sc = new Scanner(System.in);
         int input = -1;
@@ -268,12 +318,28 @@ public final class PUtils
     //____________________________________________ EXECUTION UTILITIES _________________________________________________
 
     /**
-     * Prints the time in ms between 2 time instances of the program and the memory that is currently used.
+     * Prints the time in the specified time unit, between 2 time instances of the program.
      */
-    public static void printExecutionInformation(final long startingTime, final long endTime)
+    public static void printExecutionTime(final long startingTime, final long endTime, final PTimeUnit timeUnit)
+    {
+        System.out.println("Total Execution Time : "+
+                (PTimeUnit.Milliseconds.convert(endTime-startingTime, timeUnit)) + " " + timeUnit.unitName);
+    }
+
+    /**
+     * Prints the time in ms between 2 time instances of the program.
+     */
+    public static void printExecutionTimeMs(final long startingTime, final long endTime)
+    {
+        printExecutionTime(startingTime, endTime, PTimeUnit.Milliseconds);
+    }
+
+    /**
+     * Prints the memory that is currently used.
+     */
+    public static void printMemoryUsage()
     {
         Runtime runtimeInstant = Runtime.getRuntime();
-        System.out.println("Total Execution Time : "+( (endTime-startingTime) / 100000) + " ms.");
         System.out.println("Memory in use: "+( (runtimeInstant.totalMemory() - runtimeInstant.freeMemory())/BYTES_OF_MB)+" MBs.");
     }
 
