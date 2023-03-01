@@ -3,3 +3,5 @@
 petrosp_Library.iml
 out/jdk8/production/
 out/jdk8/test/
+out/production/
+out/test/
