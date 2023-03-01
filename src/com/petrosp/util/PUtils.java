@@ -320,18 +320,18 @@ public final class PUtils
     /**
      * Prints the time in the specified time unit, between 2 time instances of the program.
      */
-    public static void printExecutionTime(final long startingTime, final long endTime, final PTimeUnit timeUnit)
+    public static void printExecutionTime(final String msg, final long startingTime, final long endTime, final PTimeUnit timeUnit)
     {
-        System.out.println("Total Execution Time : "+
+        System.out.println(msg+
                 (PTimeUnit.Milliseconds.convert(endTime-startingTime, timeUnit)) + " " + timeUnit.unitName);
     }
 
     /**
      * Prints the time in ms between 2 time instances of the program.
      */
-    public static void printExecutionTimeMs(final long startingTime, final long endTime)
+    public static void printExecutionTimeMs(final String msg, final long startingTime, final long endTime)
     {
-        printExecutionTime(startingTime, endTime, PTimeUnit.Milliseconds);
+        printExecutionTime(msg, startingTime, endTime, PTimeUnit.Milliseconds);
     }
 
     /**

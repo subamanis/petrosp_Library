@@ -69,8 +69,4 @@ class PUtilsTest
         assertEquals(-3, PUtils.clamp(-3,-3.09,0));
     }
 
-    double ee()
-    {
-        return  3d;
-    }
 }
